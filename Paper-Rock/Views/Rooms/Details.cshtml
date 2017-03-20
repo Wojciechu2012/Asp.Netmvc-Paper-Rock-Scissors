@@ -1,0 +1,42 @@
+﻿@model Paper_Rock.Models.Room
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayFor(model => model.Player1.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Player1Res)
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.Player2.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Player2Res)
+        </dd>
+
+        <dt>
+            Value
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+       
+
+    </dl>
+</div>
+<p>    
+    @Html.ActionLink("Back to List", "Index")
+</p>

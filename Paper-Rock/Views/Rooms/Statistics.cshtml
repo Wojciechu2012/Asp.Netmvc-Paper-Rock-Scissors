@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Paper_Rock.Models.RoomsStatistic>
+@{
+    ViewBag.Title = "Statistics";
+}
+
+
+<p>You played in @Model.Count() games</p>
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        if (item.win == true)
+        {
+         @:<tr style="background-color:greenyellow">
+                } else if (item.win == false) {
+             @:<tr style="background-color:red">
+                }else
+                     {           
+                      @:<tr style="background-color:gray">
+                       }
+
+
+
+          
+            <td>
+            Room nr @Html.DisplayTextFor(modelItem => item.room.Id)
+           </td>
+            <td>
+                @Html.DisplayTextFor(modelItem => item.room.Player1Res)
+            </td>
+            <td>
+                @Html.DisplayTextFor(modelItem => item.room.Player2Res)
+            </td>
+            <td>
+               @if (item.win == null)
+               {
+                <p>Draw</p>
+               }
+               else
+               {
+                   if (item.win == true)
+                   {
+                    <p>Win</p>
+                   }
+                   if (item.win == false)
+                   {
+                       <p>Lose</p>
+                    @Html.DisplayText("Lose")
+                   }
+               }
+
+
+            </td>
+          
+        @:</tr>
+    }
+    
+    </table>

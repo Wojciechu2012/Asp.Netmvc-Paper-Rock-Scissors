@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Paper_Rock.Models.Room>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Action("MyCreatedRooms","Rooms",null)
+
+@Html.Action("MyJoinedRooms", "Rooms", null)
+
+<h2>List of room</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Player1.UserName)
+        </th>
+    
+        <th>
+            Room 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Player1.UserName)
+        </td>
+         <td>
+          Room nr @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Value)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Join","Join",new { id = item.Id })
+
+        </td>
+    </tr>
+}
+
+</table>

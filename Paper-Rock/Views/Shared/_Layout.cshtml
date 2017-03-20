@@ -1,0 +1,90 @@
+﻿@using Paper_Rock.Models
+@using Microsoft.AspNet.Identity
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+               
+            </div>
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Rooms", "Index", "Rooms")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>                
+                </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.Partial("_LoginPartial", User.Identity.Name);
+                }
+                else
+                {
+                    @Html.Partial("_LoginPartial")
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="row">
+            
+            <div class="col-md-2 left-navbar">
+                @if (User.Identity.IsAuthenticated)
+                {
+                <ul class="sidebar-nav">
+                    <li>
+                        @Html.ActionLink("Rooms", "Index", "Rooms", null, new { style = "text-decoration:none;color:#808080;" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Statisicts", "Statistics", "Rooms", null, new { style = "text-decoration:none;color:#808080;" })
+                    </li>
+                 
+                </ul>
+                }
+            </div>
+
+
+            <div class="col-sm-9 col-md-offset-1">
+                @{
+                    var manager = new UserManager<Player>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<Player>(new DBContext()));
+                    var currentUser = manager.FindById(User.Identity.GetUserId());
+                }
+                @if (User.Identity.IsAuthenticated)
+            {
+                    <div id="points">
+                        <h4>Hello @currentUser.UserName has @currentUser.Points points</h4>
+                    </div>
+                }
+                <div class="render">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+        <hr />
+    
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

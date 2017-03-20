@@ -1,0 +1,56 @@
+﻿@model Paper_Rock.Models.Room
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Player1.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Player1.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Player2.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Player2.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Player1Res)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Player1Res)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Player2Res)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Player2Res)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
